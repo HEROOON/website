@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasaHero</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f5f5f5; /* Adjust based on your design */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 70px;
+            height: 65px;
+            margin-right: -10px; /* Reduced gap */
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 16px;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            padding: 50px 0;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Carousel Item Image */
+        .carousel-item img {
+            height: 400px;
+            width: 600px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: 5%;
+        }
+
+        /* Caption on the left */
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 7%;
+            transform: translateY(-50%);
+            text-align: justify;
+            color: white;
+            z-index: 2;
+        }
+
+        .custom-heading {
+            font-size: 40px;
+            font-weight: bold;
+            color: #2a2a2a;
+        }
+
+        .custom-subtext {
+            font-size: 18px;
+            color: #2a2a2a;
+        }
+
+        .convert-button {
+            margin-top: 20px;
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Gradient color */
+            color: white; /* Text color for contrast */
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none; /* Ensure no underline by default */
+            transition: background 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+        }
+
+        .convert-button:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%); /* Change gradient on hover */
+            text-decoration: underline; /* Underline on hover */
+        }
+
+        /* Advanced Carousel Styling */
+        .carousel-item {
+            display: none;
+            opacity: 0;
+            transform: translateX(-50%) scale(0.8);
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+
+        .carousel-item.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0%) scale(1);
+        }
+
+        /* Car Driving Simulator Section */
+        #car-driving-simulator {
+            padding: 50px 0;
+            background-color: #f5f5f5; /* Adjust based on your design */
+            text-align: center;
+        }
+
+        .simulator-title h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1c1c1c; /* Adjust for your brand */
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .simulator-title h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: #ff4500; /* Adjust this color */
+            margin: 10px auto;
+        }
+
+        .simulator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .simulator-description {
+            max-width: 600px;
+        }
+
+        .simulator-description p {
+            text-align: justify;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Ensure the image container has a fixed size */
+        .simulator-image {
+            width: 500px; /* Fixed width for the image */
+            height: 250px; /* Fixed height for the image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Ensures no overflow if the image is larger */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .simulator-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image scales properly within the container */
+        }
+
+        @media (min-width: 768px) {
+            .simulator-container {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+
+            .simulator-description {
+                text-align: left;
+            }
+
+            .simulator-image {
+                max-width: 50%;
+            }
+        }
+
+
+
+        /* Our Team Section */
+        .team-section {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .team-section h2 {
+            color: #2a2a2a;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .team-section p {
+            color: #2a2a2a;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* Founder Container */
+        .founder-member {
+            display: flex;
+            justify-content: center;
+            margin-bottom: -20px; /* Adjust to move it closer to the team */
+        }
+
+        /* Team Members Container */
+        .team-container {
+            background-color: #f5f5f5; /* Adjust based on your design */
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            gap: 50px; /* Even spacing between members */
+            margin-top: 50px;
+            padding-right: 289.5px; /* Adjust padding to control the right alignment */
+        }
+
+        /* Team Member Styling */
+        .team-member {
+            text-align: center;
+            position: relative;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #00bfff;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .team-member:hover img {
+            border-color: #2a2a2a;
+        }
+
+        .team-member h3 {
+            margin: 10px 0 5px 0;
+            font-size: 18px;
+            color: #2a2a2a;
+        }
+
+        .team-member span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            z-index: 10; /* Ensure it's on top of other elements */
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            display: none; /* Initially hidden */
+            flex-direction: column;
+        }
+
+        /* Show social icons on hover over the team member */
+        .team-member:hover .social-icons {
+            display: flex; /* Show icons when hovering over the member */
+        }
+
+        .social-icons a {
+            margin: 5px 0;
+            font-size: 20px;
+            color: transparent; /* Make the icon text transparent */
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Gradient background */
+            -webkit-background-clip: text; /* Clip the background to the text */
+            background-clip: text; /* Clip the background to the text */
+            transition: color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        .social-icons a:hover {
+            color: transparent; /* Keep it transparent on hover */
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Gradient remains */
+        }
+
+        /* Ensure all team members below are aligned */
+        .team-container .team-member {
+            margin-top: 20px; /* Control the top margin uniformly */
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a); /* Matching header background */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: auto;
+            margin-right: 40px;
+        }
+
+        .footer-logo-text {
+            font-size: 30px;
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            margin-left: -60px; /* Reduced gap */
+        }
+
+        .footer-links {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #000;
+        }
+
+
+        .footer-links a {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 16px;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-decoration: none;
+            padding: 10px 25px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-links a:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+
+        .footer-copyright {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="logo-removebg-preview.png" alt="Driving School Logo" class="logo-image">
+        <span class="logo-text">PasaHero</span>
+    </div>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Programs</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Driving Simulation</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="carousel-container">
+    <div id="imageCarousel" class="carousel">
+        <div class="carousel-inner">
+            <!-- First image (active) -->
+            <div class="carousel-item active">
+                <img src="sim1.jpg" alt="Image 1">
+            </div>
+            <!-- Second image -->
+            <div class="carousel-item">
+                <img src="sim2.jpg" alt="Image 2">
+            </div>
+            <!-- Third image -->
+            <div class="carousel-item">
+                <img src="sim3.jpg" alt="Image 3">
+            </div>
+            <!-- Fourth image -->
+            <div class="carousel-item">
+                <img src="sim4.jpg" alt="Image 4">
+            </div>
+            <!-- Fifth image -->
+            <div class="carousel-item">
+                <img src="sim5.jpg" alt="Image 5">
+            </div>
+        </div>
+
+        <!-- Caption placed on the left side of the image -->
+        <div class="carousel-caption">
+            <h1 class="custom-heading">PasaHero Driving School</h1>
+            <pre class="custom-subtext">
+<b><i>LEARNING</i></b> to drive should be <b><i>EXCITING</i></b>.
+<b><i>SAFETY</i></b> should never be <b><i>BORING.</i></b>
+We’re here to make <b><i>DRIVING FUN</i></b> and <b><i>SAFE.</i></b>
+            </pre>
+            <button class="convert-button">Enroll Now</button>
+        </div>
+    </div>
+</div>
+
+<section id="car-driving-simulator">
+    <div class="simulator-title">
+        <h2>CAR DRIVING SIMULATOR</h2>
+    </div>
+    <div class="simulator-container">
+        <div class="simulator-description">
+            <p>PasaHero Car Driving Simulator is a brand new training tool for both beginner and experienced drivers to practice real world situations. It is a real car like replication with the controls of a actual car like a steering wheel, gears, brakes, pedals etc. The simulator hardware and software are fully customizable for the spectrum of vehicles from sedans to SUVs, 4x4s, vans and it can be configured for the vehicles running on both left handed and right handed roads. It has been used by driving schools and vocational training centers, automotive research facilities, logistics, and transportation companies.</p>
+        </div>
+        <div class="simulator-image">
+            <img src="sim4.jpg" alt="Car Driving Simulator">
+        </div>
+    </div>
+</section>
+
+   <!-- Our Team Section -->
+<section class="team-section">
+    <p>OUR TEAM</p>
+    <h2>"The most skilled and highly qualified professionals"</h2>
+    
+    <!-- Founder Section -->
+    <div class="founder-member">
+        <div class="team-member">
+            <img src="niko.png" alt="Aaron Nunez">
+            <h3>Jearemy Niko Nositera (CEO)</h3>
+            <span><b><i>" FOUNDER "</i></b></span>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Other Team Members Section -->
+    <div class="team-container">
+        <div class="team-member">
+            <img src="heron.png" alt="Saimon Harmer">
+            <h3>Jeron S. Lopez (CTO)</h3>
+            <span><b><i>" TECHNOLOGY OFFICER "</i></b></span>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="team-member">
+            <img src="des.png" alt="Aaron Nunez">
+            <h3>Desiree A. Refran (CFO)</h3>
+            <span><b><i>" FINANCIAL OFFICER "</i></b></span>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="team-member">
+            <img src="ivan.png" alt="Aaron Nunez">
+            <h3>Nhoel Ivan A. Sarino (CGO)</h3>
+            <span><b><i>" GROWTH OFFICER "</i></b></span>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Footer Section -->
+        <footer>
+            <div class="footer-logo">
+                <img src="logo-removebg-preview.png" alt="pasahero">
+                <span class="footer-logo-text">PasaHero</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Advertise</a>
+                <a href="#">Supports</a>
+                <a href="#">Marketing</a>
+                <a href="#">Media</a>
+                <a href="#">Contacts</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; <b>2024 PasaHero. All Rights Reserved.</b>
+            </div>
+        </footer>
+
+
+<script>
+    // JavaScript for automatic carousel functionality
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+
+    function showNextImage() {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % totalItems;
+        items[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextImage, 5000);
+</script>
+
+</body>
+</html>

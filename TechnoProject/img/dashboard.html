@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasaHero Driving School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        header img {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero-section {
+            background-color: #3498db;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-section h2 {
+            font-size: 2.5em;
+        }
+        .hero-section p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .hero-section button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .features-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 0;
+            background-color: white;
+        }
+        .feature {
+            width: 30%;
+            text-align: center;
+        }
+        .feature img {
+            width: 100px;
+            height: 100px;
+        }
+        .feature h3 {
+            margin-top: 10px;
+        }
+        .about-section {
+            padding: 50px;
+            background-color: #ecf0f1;
+            text-align: center;
+        }
+        .contact-section {
+            padding: 50px;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+        .contact-section form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-section input, .contact-section textarea {
+            margin: 10px 0;
+            padding: 10px;
+            width: 50%;
+            font-size: 1em;
+        }
+        .contact-section button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="/img/download.jpeg" alt="PasaHero Logo">
+    <h1>PasaHero Driving School</h1>
+</header>
+
+<nav>
+    <a href="#features">Features</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero-section">
+    <h2>Drive Your Way to Success with PasaHero</h2>
+    <p>Expert Training, Flexible Schedules, and Innovative Driving Simulations</p>
+    <button>Get Started Today</button>
+</section>
+
+<section id="features" class="features-section">
+    <div class="feature">
+        <img src="https://via.placeholder.com/100" alt="Feature 1">
+        <h3>Immersive Driving Experiences</h3>
+        <p>Experience real-life driving with our state-of-the-art simulators.</p>
+    </div>
+    <div class="feature">
+        <img src="https://via.placeholder.com/100" alt="Feature 2">
+        <h3>Flexible Lesson Schedules</h3>
+        <p>Customize your lesson times to fit your busy life.</p>
+    </div>
+    <div class="feature">
+        <img src="https://via.placeholder.com/100" alt="Feature 3">
+        <h3>Affordable Packages</h3>
+        <p>Learn at your own pace without breaking the bank.</p>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <h2>About PasaHero</h2>
+    <p>At PasaHero Driving School, we offer high-quality driving lessons tailored to your needs. Our mission is to make sure every student becomes a confident and skilled driver. We provide innovative simulation technology, experienced instructors, and customized learning plans to ensure you are ready for the road.</p>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>&copy; 2024 PasaHero Driving School. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

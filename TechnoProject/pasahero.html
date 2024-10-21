@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driving School Landing Page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 16px; /* Adjust font size */
+            color: transparent; /* Make the text color transparent */
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Gradient background */
+            -webkit-background-clip: text; /* For Webkit browsers */
+            background-clip: text; /* For Firefox */
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative; /* Necessary for ::after positioning */
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: ''; /* No content, just a decorative line */
+            position: absolute;
+            width: 0; /* Start with no width (hidden) */
+            height: 2px; /* Thickness of the underline */
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Gradient line */
+            left: 0;
+            bottom: 0; /* Place it directly below the text */
+            transition: width 0.3s ease; /* Smooth expansion on hover */
+        }
+
+        nav ul li a:hover::after {
+            width: 100%; /* Expands the line fully on hover */
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%); /* Reverse gradient on hover */
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .cta-button {
+            background: linear-gradient(to right, #8000ff, #00bfff); ;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 70px; /* Adjust size as needed */
+            height: 65px; /* Adjust size as needed */
+            margin-left: 10px; /* Space between name and logo */
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: transparent; /* Makes the text color transparent */
+            background: linear-gradient(to right, #8000ff, #00bfff); /* Your gradient */
+            -webkit-background-clip: text; /* Clipping the background to the text */
+            background-clip: text; /* For Firefox */
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo-removebg-preview.png" alt="Driving School Logo" class="logo-image">
+            <span class="logo-text">PasaHero</span> <!-- Name beside the logo with gradient text -->
+        </div>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Programs</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Driving Simulation</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+</body>
+</html>

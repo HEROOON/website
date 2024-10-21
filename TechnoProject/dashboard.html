@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PasaHero Driving School Landing Page</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            width: 70px;
+            height: 65px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Navigation Styles */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            font-weight: bold;
+            font-size: 16px;
+            color: transparent;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            text-decoration: none;
+            padding: 10px 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #8000ff, #00bfff);
+            left: 0;
+            bottom: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            background: linear-gradient(135deg, #38f9d7 0%, #43e97b 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Carousel Container */
+        .carousel-container {
+            background: linear-gradient(to right, #8860D8, #D992FF);
+            padding: 50px 0;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Carousel Item Image */
+        .carousel-item img {
+            height: 400px;
+            width: 600px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+            margin-left: auto;
+            margin-right: 5%;
+        }
+
+        /* Caption on the left */
+        .carousel-caption {
+            position: absolute;
+            top: 50%;
+            left: 7%;
+            transform: translateY(-50%);
+            text-align: left;
+            color: white;
+            z-index: 2;
+        }
+
+        .custom-heading {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .custom-subtext {
+            font-size: 18px;
+        }
+
+        .convert-button {
+            margin-top: 20px;
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Advanced Carousel Styling */
+        .carousel-item {
+            display: none;
+            opacity: 0;
+            transform: translateX(-50%) scale(0.8);
+            transition: transform 1.5s ease, opacity 1.5s ease;
+        }
+
+        .carousel-item.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0%) scale(1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="logo-removebg-preview.png" alt="Driving School Logo" class="logo-image">
+        <span class="logo-text">PasaHero</span>
+    </div>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Programs</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Driving Simulation</a></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="carousel-container">
+    <div id="imageCarousel" class="carousel">
+        <div class="carousel-inner">
+            <!-- First image (active) -->
+            <div class="carousel-item active">
+                <img src="sim1.jpg" alt="Image 1">
+            </div>
+            <!-- Second image -->
+            <div class="carousel-item">
+                <img src="sim2.jpg" alt="Image 2">
+            </div>
+            <!-- Third image -->
+            <div class="carousel-item">
+                <img src="sim3.jpg" alt="Image 3">
+            </div>
+            <!-- Fourth image -->
+            <div class="carousel-item">
+                <img src="sim4.jpg" alt="Image 4">
+            </div>
+            <!-- Fifth image -->
+            <div class="carousel-item">
+                <img src="sim5.jpg" alt="Image 5">
+            </div>
+        </div>
+
+        <!-- Caption placed on the left side of the image -->
+        <div class="carousel-caption">
+            <h1 class="custom-heading">PasaHero Driving School</h1>
+            <pre class="custom-subtext">
+LEARNING to drive should be EXCITING.
+SAFETY should never be BORING.
+We’re here to make DRIVING FUN and SAFE.
+            </pre>
+            <button class="convert-button">Get Started Today</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for automatic carousel functionality
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.carousel-item');
+    const totalItems = items.length;
+
+    function showNextImage() {
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % totalItems;
+        items[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextImage, 5000);
+</script>
+
+</body>
+</html>

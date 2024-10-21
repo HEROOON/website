@@ -1,0 +1,47 @@
+    /* Container for the carousel */
+    .carousel-container {
+        background: linear-gradient(to right, #8860D8, #D992FF);
+        padding: 50px 0;
+        height: 500px;
+        position: relative;
+    }
+
+    /* Custom image and layout styling */
+    .carousel-item img {
+        height: 400px;
+        width: auto;
+        border-radius: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: 5%;
+    }
+
+    /* Text and button aligned to the left */
+    .carousel-caption {
+        position: absolute;
+        top: 50%;
+        left: 7%;
+        transform: translateY(-50%);
+        text-align: left;
+        color: white;
+        z-index: 2;
+    }
+
+    .custom-heading {
+        font-size: 48px;
+        font-weight: bold;
+    }
+
+    .custom-subtext {
+        font-size: 18px;
+    }
+
+    .convert-button {
+        margin-top: 20px;
+        background-color: #6f42c1;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+    }
